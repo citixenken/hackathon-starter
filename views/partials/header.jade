@@ -23,7 +23,11 @@
             a(href='/login') Login
           li(class=(title == 'Create Account') ? 'active' : undefined)
             a(href='/signup') Create Account
-        else
+        else          
+          li(class=(title == 'Add Book') ? 'active' : undefined)
+            a(href='/books') Add Book
+          li(class=(title == 'Search') ? 'active' : undefined)
+            a(href='/searches') Search
           li.dropdown(class=(title == 'Account Management') ? 'active' : undefined)
             a.dropdown-toggle(href='#', data-toggle='dropdown')
               if user.profile.picture
