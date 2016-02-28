@@ -129,7 +129,7 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 app.get('/books', bookController.getBooks);
-app.get('/searches', searchController.getSearches);
+app.get('/search', searchController);
 
 /**
  * API examples routes.
