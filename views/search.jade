@@ -6,8 +6,9 @@ block content
 
     p.lead Search Book in our Database
         form(role='form', method="POST", style='max-width: 300px;')
+            input(type='hidden', name='_csrf', value=_csrf)
             .form-group
-                label(for= 'booktitle') By Book Title
+                label(for='booktitle') By Book Title
                 input.form-control(type='text', name="booktitle", placeholder='Enter Book Title', autofocus)
             .form-group
                 label(for= 'authorname') By Name of Author
@@ -17,6 +18,7 @@ block content
                 input.form-control(type='text', name="isbn", placeholder='Enter ISBN', autofocus)
             button.btn.btn-primary(type='submit') Search Book
 
-    ul 
-        for search in searches
-            li= search.name
+    if searches
+        ul
+            for search in searches
+                li= search.booktitle
