@@ -1,9 +1,23 @@
 extends layout
 
 block content
-	.page-header
-		h3 All Books
+    .page-header
+        h3 My Books Collection
 
-	ul
-		for book in books
-			li= book.name
+    p.lead Add Book to our Database
+        form(role='form',method="POST", style='max-width: 300px;')
+            .form-group
+                label(for= 'booktitle') Book Title
+                input.form-control(type='text', name="booktitle", placeholder='Enter Book Title', autofocus)
+            .form-group
+                label(for= 'authorname') Name of Author
+                input.form-control(type='text', name="authorname", placeholder='Enter Name of Author', autofocus)
+            .form-group
+                label(for= 'isbn') ISBN
+                input.form-control(type='text', name="isbn", placeholder='Enter ISBN', autofocus)
+            button.btn.btn-primary(type='submit') Add Book
+
+
+    ul
+        for book in books
+            li= book.name
