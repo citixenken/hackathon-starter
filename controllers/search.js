@@ -1,25 +1,40 @@
 /**
- * GET /searches
- * List all books.
+ * Module dependencies.
  */
+var router = express.Router();
+var Book = require('../models/Book');
 
- var Search = require('../models/Search.js');
+// GET /searches
 
- exports.getSearches = function(req, res){
- 	Search.find(function(err, docs){
- 		res.render('searches', { searches: docs });
- 	});
- };
+router.get('/', function(req, res, next){
+  res.render('search');
+});
 
- exports.postSearches = function(req, res){
- 	req.assert('bookname', 'Name cannot be blank').notEmpty();
-  	req.assert('booktitle', 'Title cannot be blank').notEmpty();
-  	req.assert('isbn', 'ISBN cannot be blank').notEmpty();
 
-  	var errors = req.validationErrors();
+// POST /searches
 
-  	if (errors) {
-    	req.flash('errors', errors);
-    	return res.redirect('/searches');
-  	}
- };
+router.post('/', function(req, res, next){
+
+ 	// req.assert('bookname', 'Name cannot be blank').notEmpty();
+  // 	req.assert('booktitle', 'Title cannot be blank').notEmpty();
+  // 	req.assert('isbn', 'ISBN cannot be blank').notEmpty();
+
+  // 	var errors = req.validationErrors();
+
+  // 	if (errors) {
+  //   	req.flash('errors', errors);
+  //   	return res.redirect('/searches');
+  // 	}
+
+  var query = {};
+
+  for (var k in req.query){
+    query[k] = RegExp(req.query[k], 'i');
+  }
+
+  Book.find(query, function(err, docs){
+    if (err) return next(err);
+    res.render('search', { searches: docs });
+  });
+
+});

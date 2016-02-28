@@ -131,8 +131,7 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 
 app.get('/books', bookController.getBooks);
 app.post('/books', bookController.postBooks);
-app.get('/searches', searchController.getSearches);
-app.post('/searches', searchController.postSearches);
+app.use('/search', searchController);
 
 /**
  * API examples routes.
