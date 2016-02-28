@@ -5,17 +5,23 @@ block content
         h3 My Books Collection
 
     p.lead Add Book to our Database
-        form(role='form',method="POST", style='max-width: 300px;')
+        form.form-horizontal(role='form', method='POST')
+            input(type='hidden', name='_csrf', value=_csrf)
             .form-group
-                label(for= 'booktitle') Book Title
-                input.form-control(type='text', name="booktitle", placeholder='Enter Book Title', autofocus)
+                label(class='col-sm-2 control-label', for='booktitle') Book Title
+                .col-sm-8
+                    input.form-control(type='text', name='booktitle', id='booktitle', autofocus=true)
             .form-group
-                label(for= 'authorname') Name of Author
-                input.form-control(type='text', name="authorname", placeholder='Enter Name of Author', autofocus)
+                label(class='col-sm-2 control-label', for='authorname') Name of Author
+                .col-sm-8
+                    input.form-control(type='text', name='authorname', id='authorname')
             .form-group
-                label(for= 'isbn') ISBN
-                input.form-control(type='text', name="isbn", placeholder='Enter ISBN', autofocus)
-            button.btn.btn-primary(type='submit') Add Book
+                label(class='col-sm-2 control-label', for='isbn') ISBN
+                .col-sm-8
+                    input.form-control(type='text', name='isbn', id='isbn')
+            .form-group
+                .col-sm-offset-2.col-sm-8
+                    button.btn.btn-primary(type='submit') Add Book
 
 
     ul
