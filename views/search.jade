@@ -3,7 +3,12 @@ extends layout
 block content
     .page-header
         h3 All Search Results
-
+        if searches
+            ul.text-capitalize 
+                for search in searches
+                    li= search.booktitle
+                        ul= search.authorname
+                        
     p.lead Search Book in our Database
         form(role='form', method="POST", style='max-width: 300px;')
             input(type='hidden', name='_csrf', value=_csrf)
@@ -18,7 +23,3 @@ block content
                 input.form-control(type='text', name="isbn", placeholder='Enter ISBN', autofocus)
             button.btn.btn-primary(type='submit') Search Book
 
-    if searches
-        ul
-            for search in searches
-                li= search.booktitle
