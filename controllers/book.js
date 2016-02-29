@@ -6,7 +6,7 @@
  var Book = require('../models/Book.js');
 
  exports.getBooks = function(req, res){
- 	Book.find(function(err, docs){
+ 	Book.find({userId: req.user.id}, function(err, docs){
  		res.render('books', { books: docs });
  	});
  };
@@ -28,23 +28,22 @@ exports.postBooks = function(req, res) {
   }
 
   var book = new Book({
+    userId: req.user.id,
     booktitle: req.body.booktitle,
     authorname: req.body.authorname,
     isbn: req.body.isbn
   });
 
-  Book.findOne({ booktitle: req.body.booktitle }, function(err, existingBook) {
-    if (existingBook) {
-      req.flash('errors', { msg: 'This Book already exists in our database.' });
-      return res.redirect('/books');
+  book.save(function(err) {
+    if (err) {
+      req.flash('errors', { msg: (err.errors.booktitle || err.errors.authorname || err.errors.isbn || err).message });
+      //req.flash('errors', { msg: 'A Book with this credentials already exists'});
+    } 
+    else {
+      req.flash('success', { msg: 'Book has been added to our database.'});
     }
-    book.save(function(err) {
-      if (err) {
-        return next(err);
-      }
-      req.flash('success', { msg: 'Book has been added to our database.' });
-      res.redirect('/books');
-    });
+    res.redirect('/books');
   });
+
 };
 

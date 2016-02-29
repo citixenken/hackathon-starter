@@ -3,6 +3,11 @@ extends layout
 block content
     .page-header
         h3 My Books Collection
+        if books
+            ul.text-capitalize
+                for book in books
+                    li= book.booktitle
+                        ul= book.authorname
 
     p.lead Add Book to our Database
         form.form-horizontal(role='form', method='POST')
@@ -22,8 +27,3 @@ block content
             .form-group
                 .col-sm-offset-2.col-sm-8
                     button.btn.btn-primary(type='submit') Add Book
-
-
-    ul
-        for book in books
-            li= book.name
