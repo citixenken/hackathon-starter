@@ -36,12 +36,9 @@ exports.postBooks = function(req, res) {
 
   book.save(function(err) {
     if (err) {
-<<<<<<< HEAD
+
       //req.flash('errors', { msg: (err.errors.booktitle || err.errors.authorname || err.errors.isbn || err).message });
       //req.flash('errors', { msg: 'A Book with this credentials already exists'});
-=======
-      //req.flash('errors', { msg: (err.errors.booktitle && err.errors.authorname && err.errors.isbn && err).message });
->>>>>>> ffc478d294524a1262aaefd75d14ae5eb13c5b92
       req.flash('errors', { msg: err.message } );
       console.log((err.message ));
     } 
