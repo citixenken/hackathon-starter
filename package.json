@@ -3,7 +3,7 @@
   "version": "3.4.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sahat/hackathon-starter.git"
+    "url": "https://github.com/citizen-ken/hackathon-starter.git"
   },
   "scripts": {
     "start": "nodemon app.js",
